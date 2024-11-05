@@ -12,7 +12,7 @@ source:
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -42,6 +42,11 @@ about:
   summary: Integrate PostHog into any python application
 
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/49522
+    reason: Dependency for haystack-ai
+  recipe-maintainers:
+    - ianaobi
   recipe-maintainers:
     - Twixes
     - yakkomajuri
