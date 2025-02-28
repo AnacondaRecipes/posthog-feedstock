@@ -50,6 +50,11 @@ about:
   license_family: MIT
   license_file: LICENSE
   summary: Integrate PostHog into any python application
+  description: |
+    Integrate PostHog into any python application
+  dev_url: https://github.com/PostHog/posthog-python
+  doc_url: https://posthog.com/docs/libraries/python
+
 
 extra:
   recipe-maintainers:
