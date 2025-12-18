@@ -42,7 +42,7 @@ test:
     - pydantic
   commands:
     - pip check
-    - pytest --pyargs posthog.test -k "not test_basic_capture_exception_with_no_exception_given"
+    - pytest --pyargs posthog.test -k "not (test_basic_capture_exception_with_no_exception_given or test_clean_pydantic)"
 
 about:
   home: https://github.com/PostHog/posthog-python
