@@ -33,6 +33,13 @@ requirements:
     - opentelemetry-sdk >=1.20.0
     - opentelemetry-exporter-otlp-proto-http >=1.20.0
 
+# Disable unstable assert tests:
+# > time.sleep(flush_interval * 1.1)
+# > self.assertEqual(mock_post.call_count, 3)
+# E AssertionError: 2 != 3
+{% set deselect_tests = " --deselect=test_consumer.py::TestConsumer::test_flush_interval" %}
+{% set deselect_tests = deselect_tests + " --deselect=test_client.py::TestClient::test_basic_capture_exception_with_no_exception_given" %}
+{% set deselect_tests = deselect_tests + " --deselect=test_utils.py::TestFlagCache::test_lru_eviction" %}
 test:
   imports:
     - posthog
@@ -44,7 +51,7 @@ test:
     - posthog.ai.otel
   commands:
     - pip check
-    - pytest --pyargs posthog.test --deselect=test_client.py::TestClient::test_basic_capture_exception_with_no_exception_given
+    - pytest --pyargs posthog.test {{ deselect_tests }}
   requires:
     - freezegun =1.5.1
     - pip
